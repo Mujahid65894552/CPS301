@@ -1,0 +1,35 @@
+ interface CalculatorInterface {
+  double calculate(double num1, double num2, String operator);
+}
+public class CalculatorImpl implements CalculatorInterface {
+  public double calculate(double num1, double num2, String operator) {
+    double result = 0.0;
+    switch(operator) {
+      case "+":
+        result = num1 + num2;
+        break;
+      case "-":
+        result = num1 - num2;
+        break;
+      case "*":
+        result = num1 * num2;
+        break;
+      case "/":
+        if (num2 == 0) {
+          throw new IllegalArgumentException("Cannot divide by zero!");
+        }
+        result = num1 / num2;
+        break;
+      default:
+        throw new IllegalArgumentException("Invalid operator: " + operator);
+    }
+    return result;
+  }
+}
+ class Calculator {
+  public static void main(String[] args) {
+    CalculatorImpl calculator = new CalculatorImpl();
+    double result = calculator.calculate(10, 0, "*");
+    System.out.println(result);
+  }
+}
